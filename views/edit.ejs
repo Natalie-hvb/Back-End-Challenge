@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./public/head') %>
+</head>
+<body>
+    <%- include('./public/header') %>
+    <main class="d-flex align-items-center justify-content-center">
+        <div>
+            <h3>Edit a Post</h3>
+            <div class="card mb-4" style="width: 500px;">
+                <form action="/feed/edit/<%= feed._id %>" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<%= feed.name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" id="message" name="message"><%= feed.message %></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

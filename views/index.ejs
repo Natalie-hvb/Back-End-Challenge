@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./public/head') %>
+</head>
+<body>
+<header>
+        <%- include('./public/header') %>
+    </header>
+    <main class="d-flex align-items-center justify-content-center">
+        <div id="input" class="card post mb-4">
+            <div class="card-body">
+                <form action="/new-feed" method="post" onsubmit="return validateForm()">
+                    <button class="btn btn-primary">Post a message</button>
+                    <br/><br/>
+                    <input type="type" id="name" name="name" class="form-control" placeholder="Name" maxlength="15">
+                    <br/><br/>
+                    <textarea name="message" id="message" class="form-control" maxlength="40" placeholder="Message"></textarea>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div id="output" class="text-center">
+        <% for (let i = 0; i < feeds.length; i++) { %>
+        <div class="card post mb-6">
+            <div class="card-body">
+                <h5 class="card-title"><%= feeds[i].name %></h5>
+                <p class="card-text"><%= feeds[i].message.slice(0, 20) %></p>
+                <a href="/feed/<%= feeds[i]._id %>">See more..</a>
+                <p class="card-text"><%= feeds[i].createdAt %></p>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <script>
+        function validateForm() {
+            let messageInput = document.getElementById("message");
+            let nameInput = document.getElementById("name")
+            const message = messageInput.value;
+            const name = nameInput.value
+        
+            if (name === "" || message === "") {
+                alert("Both fields are required");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <footer>
+    </footer>
+</body>
+</html>

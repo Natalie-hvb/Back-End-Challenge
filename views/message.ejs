@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./public/head') %>
+</head>
+<body>
+    <%- include('./public/header') %>
+    <a href="/feed" class="btn btn-light">Back</a>
+    <main class="d-flex align-items-center justify-content-center">
+        <div class="card mb-4" style="width: 50%;">
+            <div class="card-header">
+                <h3 class="card-title"><%= feed.name %></h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><%= feed.message %></p>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><%= feed.createdAt %></p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <form action="/delete-message/<%= feed._id %>" method="post">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <a href="/feed/edit/<%= feed._id %>" class="btn btn-primary">Edit Post</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
